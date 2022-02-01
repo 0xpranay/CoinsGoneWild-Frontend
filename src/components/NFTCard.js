@@ -5,10 +5,7 @@ const abi = new ethers.utils.Interface([
   "function tokenURI(uint256 tokenId) public view returns(string memory)",
 ]);
 const contractAddress = "0xBc4377668BB685d737Ff66be2F5700A68c4b2635";
-const provider = new ethers.providers.AlchemyProvider(
-  "rinkeby",
-  "u2bJ_xZxEmOoNkHS8X8nGxn8qDMXe27-"
-);
+const provider = new ethers.getDefaultProvider("rinkeby");
 async function fetchNFT(tokenId) {
   const contract = new ethers.Contract(contractAddress, abi, provider);
   const metadataURI = await contract.tokenURI(tokenId);
