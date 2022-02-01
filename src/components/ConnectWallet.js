@@ -71,11 +71,16 @@ export default function ConnectWallet() {
           <ConnectYourWalletButton
             connect={() => {
               activate(
-                new InjectedConnector(),
+                new InjectedConnector({
+                  supportedChainIds: [4],
+                }),
                 NoEthereumProviderError,
                 true
-              ).catch(() => {
-                alert("Get Metamask or use Walletconnect");
+              ).catch((e) => {
+                if (e.toString().includes("UnsupportedChainIdError")) {
+                  alert("Connect to Rinkeby!");
+                }
+                console.log(e);
               });
             }}
             name="Metamask"
@@ -91,7 +96,12 @@ export default function ConnectWallet() {
                   },
                   chainId: 100,
                 })
-              );
+              ).catch((e) => {
+                if (e.toString().includes("UnsupportedChainIdError")) {
+                  alert("Connect to Rinkeby!");
+                }
+                console.log(e);
+              });
             }}
             name="Walletconnect"
             key="wc"
