@@ -92,9 +92,9 @@ export default function ConnectWallet() {
                 new WalletConnectConnector({
                   infuraId: undefined,
                   rpc: {
-                    100: "https://dai.poa.network/",
+                    4: "https://eth-rinkeby.alchemyapi.io/v2/u2bJ_xZxEmOoNkHS8X8nGxn8qDMXe27-",
                   },
-                  chainId: 100,
+                  chainId: 4,
                 })
               ).catch((e) => {
                 if (e.toString().includes("UnsupportedChainIdError")) {
